@@ -106,6 +106,25 @@ class Test {
     this.length++;
     return true;
   }
+
+  remove(ind) {
+    if (ind < 0 || ind >= this.length) return undefined;
+    if (ind === 0) {
+      let targetNode = this.shift();
+      return targetNode;
+    }
+    if (ind === this.length - 1) {
+      let targetNode = this.pop();
+      return targetNode;
+    }
+    let prevNode = this.get(ind - 1);
+    let targetNode = prevNode.next;
+    let nextNode = targetNode.next;
+    prevNode.next = nextNode.val;
+    targetNode.next = null;
+    this.length--;
+    return targetNode;
+  }
 }
 
 const t = new Test();
@@ -119,5 +138,7 @@ t.push(25);
 // console.log(check);
 // t.unShift('Geo');
 // t.set(3, 'Iftikhar');
-t.insert(2, 'Chachu');
-console.log(t.insert(0, 'Geo'));
+// t.insert(2, 'Chachu');
+// console.log(t.insert(0, 'Geo'));
+console.log(t.remove(2));
+console.log(t);
