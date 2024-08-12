@@ -94,3 +94,14 @@ dog.move(10); // Output: Animal moved 10m.
 let cat = new Cat();
 cat.makeSound(); // Output: Meow!
 cat.move(5); // Output: Animal moved 5m.
+
+class User {
+  name = 'arsalan';
+}
+
+class AppService {
+  constructor(private readonly user: User) {}
+}
+
+const check = new AppService(new User());
+console.log(check);
