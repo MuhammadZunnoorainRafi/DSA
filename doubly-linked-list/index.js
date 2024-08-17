@@ -29,13 +29,12 @@ class DoublyLinkedList {
 
   pop() {
     let poppedNode = this.tail;
-    if (!this.head) return undefined;
+    if (this.length === 0) return undefined;
     if (this.length === 1) {
       this.head = null;
       this.tail = null;
     } else {
-      let newTail = poppedNode.prev;
-      this.tail = newTail;
+      this.tail = poppedNode.prev;
       this.tail.next = null;
     }
 
@@ -43,13 +42,28 @@ class DoublyLinkedList {
 
     return poppedNode;
   }
+
+  shift() {
+    let poppedNode = this.head;
+    if (this.length === 0) return undefined;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = poppedNode.next;
+      this.head.prev = null;
+      poppedNode.next = null;
+    }
+    this.length--;
+    return poppedNode;
+  }
 }
 
 const t = new DoublyLinkedList();
-// t.push(2);
+t.push(2);
 t.push(4);
 t.push(8);
 // t.pop();
+t.shift();
 
-console.log(t.pop());
 console.log(t);
