@@ -64,20 +64,42 @@ class DoublyLinkedList {
       this.head = newNode;
       this.tail = newNode;
     } else {
-      let oldHead = this.head;
-      oldHead.prev = newNode;
+      this.head.prev = newNode;
+      newNode.next = this.head;
       this.head = newNode;
-      this.head.next = oldHead;
     }
     this.length++;
+  }
+
+  get(ind) {
+    if (ind < 0 || ind >= this.length) return null;
+    let head = this.head;
+    let tail = this.tail;
+    console.log({ tailP: tail.prev });
+    if (ind <= this.length / 2) {
+      let count = 0;
+      while (ind !== count) {
+        head = head.next;
+        count++;
+      }
+      return head.val;
+    } else {
+      let count = this.length - 1;
+      while (ind !== count) {
+        tail = tail.prev;
+        count--;
+      }
+      return tail.val;
+    }
   }
 }
 
 const t = new DoublyLinkedList();
-// t.push(2);
-// t.push(4);
+t.push(1);
+t.push(2);
+t.push(4);
 t.push(8);
 // t.pop();
-t.unshift(1);
+// t.unshift(1);
 
-console.log(t);
+console.log(t.get(3));
