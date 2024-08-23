@@ -75,22 +75,49 @@ class DoublyLinkedList {
     if (ind < 0 || ind >= this.length) return null;
     let head = this.head;
     let tail = this.tail;
-    console.log({ tailP: tail.prev });
     if (ind <= this.length / 2) {
       let count = 0;
       while (ind !== count) {
         head = head.next;
         count++;
       }
-      return head.val;
+      return head;
     } else {
       let count = this.length - 1;
       while (ind !== count) {
         tail = tail.prev;
         count--;
       }
-      return tail.val;
+      return tail;
     }
+  }
+
+  set(ind, val) {
+    let res = this.get(ind);
+    if (res === null) return false;
+    res.val = val;
+    return true;
+  }
+
+  insert(ind, val) {
+    if (ind < 0 || ind > this.length) return false;
+    if (ind === 0) {
+      this.unshift(val);
+      return this;
+    }
+    if (ind === this.length) {
+      this.push(val);
+      return this;
+    }
+    const newNode = new Node(val);
+    const beforeNode = this.get(ind - 1);
+    const afterNode = beforeNode.next;
+    newNode.prev = beforeNode;
+    beforeNode.next = newNode;
+    newNode.next = afterNode;
+    afterNode.prev = newNode;
+    this.length++;
+    return this;
   }
 }
 
@@ -101,5 +128,7 @@ t.push(4);
 t.push(8);
 // t.pop();
 // t.unshift(1);
+// t.get(3)
+// t.set(1, 'TWO')
 
-console.log(t.get(3));
+console.log(t.insert(2, 'INSERTED'));
