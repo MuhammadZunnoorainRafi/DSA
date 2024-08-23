@@ -122,6 +122,22 @@ class Test {
     return targetNode;
   }
 
+  reverse() {
+    let current = this.head;
+    this.head = this.tail;
+    this.tail = current;
+    let next;
+    let prev = null;
+    for (let i = 0; i < this.length; i++) {
+      next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+      console.log({ current });
+    }
+    return this.print();
+  }
+
   print() {
     let arr = [];
     let current = this.head;
@@ -135,10 +151,10 @@ class Test {
 }
 
 const t = new Test();
-t.push('Hello');
-t.push('world');
-t.push('from');
-t.push(25);
+t.push('a');
+t.push('b');
+t.push('c');
+t.push('d');
 // t.pop();
 // t.shift();
 // const check = t.pop()
@@ -148,4 +164,5 @@ t.push(25);
 // t.insert(2, 'Chachu');
 // console.log(t.insert(0, 'Geo'));
 // console.log(t.remove(2));
+t.reverse();
 console.log(t.print());
