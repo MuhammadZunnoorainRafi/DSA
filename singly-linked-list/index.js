@@ -133,7 +133,6 @@ class Test {
       current.next = prev;
       prev = current;
       current = next;
-      console.log({ current });
     }
     return this.print();
   }

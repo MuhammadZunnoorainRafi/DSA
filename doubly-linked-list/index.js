@@ -141,17 +141,44 @@ class DoublyLinkedList {
     this.length--;
     return true;
   }
+
+  reverse() {
+    let current = this.head;
+    this.head = this.tail;
+    this.tail = current;
+    let prev = null;
+    let next;
+    for (let i = 0; i < this.length; i++) {
+      next = current.next;
+      current.next = prev;
+      current.prev = next;
+      prev = current;
+      current = next;
+    }
+    return this.print();
+  }
+
+  print() {
+    let arr = [];
+    let current = this.head;
+    while (current) {
+      arr.push(current.val);
+      current = current.next;
+    }
+    return arr;
+  }
 }
 
 const t = new DoublyLinkedList();
-t.push(1);
-t.push(2);
-t.push(4);
-t.push(8);
+t.push(5);
+t.push(10);
+t.push(15);
+t.push(20);
 // t.pop();
 // t.unshift(1);
 // t.get(3)
 // t.set(1, 'TWO')
 // t.insert(2, 'INSERTED')
-
-console.log(t.remove(3), t);
+// t.remove(3), t
+t.reverse();
+console.log(t.head.next.next.next.val);
