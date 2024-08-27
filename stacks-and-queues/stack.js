@@ -29,7 +29,6 @@ class Stack {
     if (!this.first) return undefined;
     let oldFirst = this.first;
     this.first = oldFirst.next;
-    console.log({ oldFirst });
     if (this.size === 0) {
       this.first = null;
       this.last = null;
