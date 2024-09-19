@@ -12,7 +12,7 @@ class Queue {
     this.size = 0;
   }
 
-  push(val) {
+  enqueue(val) {
     let newNode = new Node(val);
     if (!this.first) {
       this.first = newNode;
@@ -25,7 +25,7 @@ class Queue {
     return this;
   }
 
-  pop() {
+  dequeue() {
     if (!this.first) return undefined;
     if (this.size === 1) {
       this.first = null;
@@ -40,11 +40,11 @@ class Queue {
 }
 
 const queue = new Queue();
-queue.push('a');
-queue.push('b');
-queue.push('c');
-queue.push('d');
-queue.pop();
-queue.pop();
-queue.pop();
-console.log(queue.pop());
+queue.enqueue('a');
+queue.enqueue('b');
+queue.enqueue('c');
+queue.enqueue('d');
+queue.dequeue();
+queue.dequeue();
+queue.dequeue();
+console.log(queue.dequeue());
